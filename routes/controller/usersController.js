@@ -5,7 +5,7 @@ var Users = require('../schemas/userSchema');
 
 
 router.get('/', function (req, res) {
-    var contatos = Users.find({nome:"Teste"}, function (error, users) {
+    var findAll = Users.find(function (error, users) {
         if(error)
             throw error;
         else
@@ -22,13 +22,14 @@ router.post('/' ,function (req, res) {
         if(err)
             res.send(JSON.stringify("Impossível cadastrar no banco, favor verificar o JSON enviado!"));
         else
-            res.send(JSON.stringify("Usuário " + user.nome + "cadastrado com sucesso!"));
+            res.send(JSON.stringify("Usuário " + user.nome + " cadastrado com sucesso!"));
     });
 
 });
 
-router.get('/one', function (req, res) {
-    var findOne = Users.findOne({nome:"Teste"},function (error, user) {
+router.post('/one', function (req, res) {
+    var findOne =
+        Users.findOne({cpf:req.body.cpf},function (error, user) {
         if (error)
             throw error;
         else {
