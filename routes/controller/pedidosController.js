@@ -4,6 +4,8 @@ var router = express.Router();
 var Users = require('../schemas/userSchema');
 var Pedidos = require('../schemas/pedidosSchema');
 
+var Test = require('../schemas/testPSchema');
+
 router.post('/', function(req, res) {
 
     var pedido = new Pedidos(req.body);
@@ -26,20 +28,18 @@ router.get('/', function (req, res) {
 
 router.post('/a', function (req, res) {
 
-    var pedido = new Pedidos(req.body);
-
     tempo(req.body);
 
-    res.send('abc');
+    res.send('100.000 documentos teste inseridos');
 
 });
 
-function tempo(pedidow){
-    for(i = 0; i <10; i++){
+function tempo(testP){
+    for(i = 0; i <100000; i++){
         console.log(i);
-        var pedido = new Pedidos(pedidow);
+        var test = new Test(testP);
 
-        pedido.save();
+        test.save();
     }
 }
 
